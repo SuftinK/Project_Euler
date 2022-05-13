@@ -32,30 +32,32 @@ def isPrime(n):
     return d * d > n
     
 
+def isitPrime(k):
+    if k==2 or k==3: return True
+    if k%2==0 or k<2: return False
+    for i in range(3, int(k**0.5)+1, 2):
+        if k%i==0:
+            return False
+    return True
+print(isitPrime(13))
+
 start = time.time()    
 a = 600851475143
-"""
-a = 13195
-answer_list = list()
-for i in range(2, a):
-	if isPrime(i) and a % i == 0:
-		print(i)
-		answer_list.append(i)
 
-print(answer_list)
-print(max(answer_list))
+#a = 13195
 
-answer2 = [i for i in range(2, a) if a % i == 0]
-print(answer2)
-print(max(answer2))
-"""
 
-prime=prime_sieve_Eratosthenes(1000000000)
-print(f"the list of prime numbers created. the max value is {max(prime)}")
+answer2 = (i for i in range(a // 2, 2, -1) if a % i == 0)
+print(type(answer2))
+#print(max(answer2))
+temp = 0
+count = 1
+for i_elem in answer2:
+    print(count, i_elem)
+    if i_elem > temp and isitPrime(i_elem):
+        temp = i_elem
+    count += 1
 
-for i in prime[::-1]:
-	if a % i == 0:
-		print('Answer is ', i)
-		break
-		
+print(temp)
+
 print(f"this problem realization took me {round(time.time() - start, 2)} sec.")
