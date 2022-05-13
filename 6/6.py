@@ -21,7 +21,7 @@ def sum_of_pow(n:int) -> int:
     return sum
 
 summ_of_pow = sum_of_pow(n)
-print(summ_of_pow)
+
 
 def pow_of_sum(n:int) -> int:
     sum = 0
@@ -30,10 +30,10 @@ def pow_of_sum(n:int) -> int:
     return pow(sum,2)
 
 pow_of_summ = pow_of_sum(n)
-print(pow_of_summ)
+
 
 answer = pow_of_summ - summ_of_pow
 
-print(answer)
+print("The answer is", answer)
 
 print(f"this problem realization took me {round(time.time() - start, 2)} sec.")
