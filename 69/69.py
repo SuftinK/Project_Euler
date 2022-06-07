@@ -16,7 +16,35 @@ n	Взаимно простые числа	φ(n)	n/φ(n)
 """
 
 from math import *
+import time
 
-print(gcd(9,7))
+start = time.time()
 
-for i in range(2, 11):
+dictionary = dict()
+for i in range(2, 1000001):
+
+    for j in range(i, 1, -1):
+        if gcd(i, j) == 1:
+            if i in dictionary:
+                dictionary.get(i).append(j)
+            else:
+                dictionary[i] = [1]
+                dictionary.get(i).append(j)
+
+print(dictionary)
+maximum = 0
+maximum_i = 0
+maximum_len = 0
+maximum_comb = list()
+for k, v in dictionary.items():
+    temp = k / len(v)
+    print(f"k = {k}, v = {v}, len(v) = {len(v)}, k / len(v) = {temp}")
+    if temp > maximum:
+        maximum = temp
+        maximum_i = k
+        maximum_len = len(v)
+        maximum_comb = v[:]
+
+print(f"Ответ: максимум n/φ(n)={maximum} наблюдается при n={maximum_i}, \nдлинна взаимно простых чисел ={maximum_len}\n"
+      f"Сама комбинация = {maximum_comb}")
+print(f"Задача выполнялась {time.time() - start} секунд.")
